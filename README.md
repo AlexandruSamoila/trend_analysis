@@ -87,6 +87,9 @@ _K-means clustering of trends_
 ![Trend Clusters](results/clusters.png)
 _Visualization of trend clusters_
 
+![Perplexity Tuning](results/perplexity_tuning.png)
+_Visualization of perplexity tuning_
+
 ### Sentiment Analysis
 
 The project uses two main models for sentiment analysis:

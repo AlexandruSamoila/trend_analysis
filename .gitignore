@@ -12,6 +12,3 @@ venv/
 
 # Model checkpoints
 checkpoints/
-
-# Logs
-results/
