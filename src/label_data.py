@@ -53,35 +53,7 @@ class LabelData:
         return sentiment
 
     def analyze_trend_sentiment(self) -> Dict[str, Any]:
-        """Analyze sentiment for a single trend including its examples and posts."""
-        sentiment_scores = {"positive": 0, "negative": 0, "neutral": 0}
-
-        # Analyze examples
-        # for example in trend.get("examples", []):
-        #     if "text" in example:
-        #         sentiment = self.get_sentiment(example["text"])
-        #         print(sentiment)
-        #         sentiment_scores["examples"][sentiment.lower()] += 1
-        #         time.sleep(0.5)  # Rate limiting
-
-        # for bullet in trend.get("about_bullets", []):
-        #     sentiment = self.get_sentiment(bullet)
-        #     print(bullet, sentiment)
-        #     sentiment_scores["examples"][sentiment.lower()] += 1
-        #     time.sleep(0.5)  # Rate limiting
-        # sentiment = self.get_sentiment(trend.get("description", []))
-        # print(sentiment)
-        # sentiment_scores["examples"][sentiment.lower()] += 1
-        # time.sleep(0.5)  # Rate limiting
-
-        # Analyze topics
-        # topic_text = ""
-        # for topic in trend.get("topics", []):
-        #     topic_text += topic + " "
-        # sentiment = self.get_sentiment(topic_text)
-        # print(topic_text, sentiment)
-        # sentiment_scores[sentiment.lower()] += 1
-        # time.sleep(0.5)  # Rate limiting
+        """Analyze sentiment for all posts."""
 
         result = []
         # Analyze posts
@@ -102,38 +74,13 @@ class LabelData:
                 result.append(
                     {"post": post["text"], "sentiment": sentiment, "label": label}
                 )
-                result_roberta = model.predict(post["text"])
-                print("Chatgpt:", sentiment, "RoBERTa:", result_roberta)
-                # sentiment_scores[sentiment.lower()] += 1
+
                 time.sleep(0.5)  # Rate limiting
-            # print(result)
 
-        # Determine dominant sentiment
-        # max_sentiment = max(sentiment_scores.items(), key=lambda x: x[1])
-
-        # trend["sentiment_analysis"] = {
-        #     "scores": sentiment_scores,
-        #     "dominant_sentiment": max_sentiment[0],
-        #     "confidence": max_sentiment[1] / sum(sentiment_scores.values()),
-        # }
-        # print(trend)
         return result
 
     def run(self) -> None:
         """Run sentiment analysis on all trends and save results."""
-        # analyzed_data = []
-
-        # for trend in self.data:
-        #     print(f"Analyzing trend: {trend.get('name', 'Unknown')}")
-        #     analyzed_trend = self.analyze_trend_sentiment(trend)
-        #     analyzed_data.append(analyzed_trend)
-        #     print(
-        #         f"Dominant sentiment: {analyzed_trend['sentiment_analysis']['dominant_sentiment']}"
-        #     )
-        #     print(
-        #         f"Confidence: {analyzed_trend['sentiment_analysis']['confidence']:.2f}"
-        #     )
-        #     print("-" * 50)
 
         analyzed_data = self.analyze_trend_sentiment()
 
@@ -146,17 +93,5 @@ class LabelData:
 
 if __name__ == "__main__":
     data_path = "data/trndset-dump-Top_Creators_(DK).json"
-    # label_data = LabelData(data_path)
-    # label_data.run()
-
-    train = pd.read_json("data/analyzed_trends.json")
-    print(train.shape)
-    print(train.head())
-    print("Unique labels: ", train["label"].unique())
-    print("Total samples", train["label"].value_counts())
-    print(train.describe())
-    train, validate, test = np.split(
-        train.sample(frac=1, random_state=42),
-        [int(0.8 * len(train)), int(0.9 * len(train))],
-    )
-    print(train.shape, validate.shape, test.shape)
+    label_data = LabelData(data_path)
+    label_data.run()
