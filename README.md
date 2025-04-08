@@ -18,13 +18,22 @@ insights from social media posts.
 
 ## How to Run
 
-### Data Analysis and Visualization
+### Main Menu Interface
+
+First, edit the data_path to the desired location.
+Next, run:
 
 ```bash
 python src/main.py
 ```
 
-This will run the main analysis pipeline and generate visualizations.
+This will launch an interactive menu where you can:
+
+1. Run Data Visualization
+2. Run Trend Recommendation
+3. Run Sentiment Analysis
+4. Run Data Labeling
+5. Exit
 
 ### Individual Components
 
@@ -67,22 +76,12 @@ This will run the main analysis pipeline and generate visualizations.
 
 ## Results
 
+### Sentiment Analysis Performance
+
+- Base XLM RoBERTa accuracy: 0.56
+- Fine-tuned XLM RoBERTa accuracy: 0.84 (after 3 epochs)
+
 The analysis generates several visualizations in the `results` folder:
-
-![Number of Trends](results/number_of_trends.png)
-_Distribution of trends over time_
-
-![Trend Duration](results/duration.png)
-_Analysis of trend duration patterns_
-
-![Impressions](results/impressions.png)
-_Trend impressions analysis_
-
-![Engagement](results/engagement.png)
-_Engagement patterns across trends_
-
-![K-means Clustering](results/kmeans.png)
-_K-means clustering of trends_
 
 ![Trend Clusters](results/clusters.png)
 _Visualization of trend clusters_
@@ -92,6 +91,4 @@ _Visualization of perplexity tuning_
 
 ### Sentiment Analysis
 
-The project uses two main models for sentiment analysis:
-
-- RoBERTa-based analysis
+The project uses XLM RoBERTa for sentiment analysis, fine-tuned on our specific dataset to achieve high accuracy in trend sentiment classification.

@@ -3,20 +3,7 @@ import os
 import json
 import time
 from typing import Dict, List, Any
-from ftfy import fix_text
-import pandas as pd
-import numpy as np
 
-# Use a pipeline as a high-level helper
-import tweetnlp
-
-model = tweetnlp.Classifier(
-    "cardiffnlp/twitter-xlm-roberta-base-sentiment-multilingual", max_length=128
-)
-
-# from transformers import pipeline
-
-# pipe = pipeline("text-classification", model="mirfan899/da-sentiment")
 
 client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
