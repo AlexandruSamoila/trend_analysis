@@ -250,6 +250,6 @@ if __name__ == "__main__":
     # print(
     #     recommender.find_similar_trends("Home Renovation and DIY Project Inspirations")
     # )
-    # recommender.plot_trend_clusters(n_clusters=14, perplexity=10)
-    recommender.tune_kmeans(k_min=5, k_max=20)
+    recommender.plot_trend_clusters(n_clusters=14, perplexity=10)
+    # recommender.tune_kmeans(k_min=5, k_max=20)
     # recommender.tune_tsne_perplexity(perplexities=[5, 10, 30, 50])

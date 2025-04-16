@@ -11,8 +11,7 @@ client = OpenAI(
 
 
 class LabelData:
-    """Label data using the OpenAI API.
-
+    """
     This class is responsible for labeling the data using the OpenAI API.
     """
 
